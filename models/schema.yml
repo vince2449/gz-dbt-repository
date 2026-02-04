@@ -1,0 +1,12 @@
+# schema.yml
+version: 2
+sources: 
+   - name: raw
+     database: sapient-codex-485210-a6
+     schema: gz_raw_data
+     loader: bigquery
+     description: tables_ventes_prduits 
+     tables:
+       - name: raw_gz_sales
+       - name: raw_gz_product
+       - name: raw_gz_ship
