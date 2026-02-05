@@ -1,14 +1,25 @@
-yml
- # schema.yml
-version: 2
-sources: 
-   - name: raw
-     database: sapient-codex-485210-a6
-     schema: gz_raw_data
-     loader: bigquery
-     description: tables_ventes_prduits 
-     tables:
-       - name: `raw_gz_sales`
-       - name: `raw_gz_product`
-       - name: `raw_gz_ship`
+ -- stg_raw__sales.sql
+
+ with
+
+ source as (
+
+     select * from {{ source('raw', 'sales') }}
+
+ ),
+
+ renamed as (
+
+     select
+         date_date,
+         orders_id,
+         pdt_id,
+         revenue,
+         quantity
+
+     from source
+
+ )
+
+ select * from renamed
 
